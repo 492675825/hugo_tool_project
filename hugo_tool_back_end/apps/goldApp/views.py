@@ -1,3 +1,4 @@
+from django.db.models import Max
 from django.views.generic.base import View
 from apps.goldApp import models, serializers as gold_serializers
 from django.http import JsonResponse
@@ -81,7 +82,11 @@ class gold_daily_data_insert(View):
 
 class GoldChartCardAPIView(ListAPIView):
     """图表，卡片"""
-    queryset = models.gold_only_data.objects.all().order_by("-version_date")
+    # 先获取最大version_date所在行，避免获取去表影响性能
+    max_version_date_dict = models.gold_only_data.objects.all().order_by("-version_date").values()
+    df = pd.DataFrame(max_version_date_dict)
+    max_version_date = max_version_date_dict[0]["version_date"]
+    queryset = models.gold_only_data.objects.filter(version_date=max_version_date)
     serializer_class = gold_serializers.GoldChartCardSerializer
 
 
