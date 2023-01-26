@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'apps.goldApp',
     'apps.nonFarmApp',
+    'apps.newsApp',
     'corsheaders'
 ]
 
@@ -144,5 +145,7 @@ CORS_ALLOW_HEADERS = '*'
 
 CORS_ORIGIN_WHITELIST = (
 
-    'http://175.178.24.251:80'
+    'http://175.178.24.251:80',
+    'https://175.178.24.251:80',
+
 )
