@@ -16,28 +16,30 @@
     </el-menu>
     <!--    显示更新时间-->
     <span style="float: right;font-size: small;margin-top: 10px;margin-bottom: 10px;">最近更新: {{
-        refresh_date
-      }}</span>
+      refresh_date
+    }}</span>
 
     <el-button size="mini" style="margin-top: 10px;margin-bottom: 10px" icon="el-icon-download">
       <a :href="export_excel()">导出</a>
     </el-button>
 
     <!--    显示所有数据表格-->
-    <el-table :data="gold_data_list"
-              border stripe
-              :default-sort="{prop: 'version_date', order: 'descending'}"
-              highlight-current-row
+    <el-table
+      :data="gold_data_list"
+      border
+      stripe
+      :default-sort="{prop: 'version_date', order: 'descending'}"
+      highlight-current-row
     >
-      <el-table-column type="index" width="50" label="编号"/>
-      <el-table-column prop="version_date" label="交易日期"/>
-      <el-table-column prop="item" label="产品类别"/>
-      <el-table-column prop="open" label="开盘价"/>
-      <el-table-column prop="high" label="最高价"/>
-      <el-table-column prop="low" label="最低价"/>
-      <el-table-column prop="close" label="收盘价"/>
-      <el-table-column prop="up_or_down" label="涨幅"/>
-      <el-table-column prop="mapping" label="标记"/>
+      <el-table-column type="index" width="50" label="编号" />
+      <el-table-column prop="version_date" label="交易日期" />
+      <el-table-column prop="item" label="产品类别" />
+      <el-table-column prop="open" label="开盘价" />
+      <el-table-column prop="high" label="最高价" />
+      <el-table-column prop="low" label="最低价" />
+      <el-table-column prop="close" label="收盘价" />
+      <el-table-column prop="up_or_down" label="涨幅" />
+      <el-table-column prop="mapping" label="标记" />
     </el-table>
 
     <!--    分页-->
@@ -48,11 +50,9 @@
       :total="total"
       @size-change="handleSizeChange"
       @current-change="handleCurrentChange"
-    >
-    </el-pagination>
+    />
   </div>
 </template>
-
 
 <script>
 import axios from 'axios'
@@ -92,7 +92,6 @@ export default {
     handleSizeChange(page_size) {
       this.page_size = page_size
       this.getPage()
-
     },
     handleCurrentChange(current_page) {
       this.current_page = current_page
