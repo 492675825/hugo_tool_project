@@ -18,4 +18,5 @@ from apps.nonFarmApp import views as nonFarm_views
 
 urlpatterns = [
     path("nonFarm/data", nonFarm_views.NonFarmDataAPIView.as_view(), name="nonFarm/data"),
+    path("nonFarm/export", nonFarm_views.NonFarmDownload.as_view(), name="nonFarm/export"),
 ]

@@ -8,7 +8,6 @@ import pandas as pd
 from util.data_transform import data_transform
 
 
-
 class CommonPageNumberPagination(PageNumberPagination):
     """分页功能"""
     page_size_query_param = 'pageSize'
@@ -44,6 +43,7 @@ class GoldCloseDataAPIView(ListAPIView):
 
 class GoldDailyDataDownload(View):
     """下载黄金日数据"""
+
     def get(self, request, param_01):
         if param_01 == "full":
             queryset = models.gold_only_data.objects.all().values()
@@ -66,6 +66,7 @@ class GoldDailyDataDownload(View):
             response["Content-Disposition"] = f'attachment;filename="gold_daily.csv"'
             return response
 
+
 class gold_daily_data_insert(View):
     def get(self, request):
         """
@@ -76,3 +77,21 @@ class gold_daily_data_insert(View):
         data = data_transform()
         data.main()
         return JsonResponse({"code": 0, "msg": "success"})
+
+
+class GoldChartCardAPIView(ListAPIView):
+    """图表，卡片"""
+    queryset = models.gold_only_data.objects.all().order_by("-version_date")
+    serializer_class = gold_serializers.GoldChartCardSerializer
+
+
+class GoldChartLineAPIView(ListAPIView):
+    """图表，折线图"""
+    queryset = models.gold_monthly_data.objects.all().order_by("month_number")
+    serializer_class = gold_serializers.GoldChartLineSerializer
+
+
+class GoldChartBarAPIView(ListAPIView):
+    """图表，柱状图"""
+    queryset = models.gold_earning_rate.objects.all().order_by("-year_number")
+    serializer_class = gold_serializers.GoldChartBarSerializer

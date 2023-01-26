@@ -18,6 +18,7 @@ class GoldMonthlyDataSerializer(serializers.ModelSerializer):
         # fields = ['month_number', 'current_sum_mapping', 'history_average_mapping', 'history_sum_mapping']
         fields = "__all__"
 
+
 class GoldYearlyDataSerializer(serializers.ModelSerializer):
     """黄金年数据"""
 
@@ -32,4 +33,28 @@ class GoldCloseDataSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.gold_close_data
+        fields = "__all__"
+
+
+class GoldChartCardSerializer(serializers.ModelSerializer):
+    """黄金图表，卡片"""
+
+    class Meta:
+        model = models.gold_only_data
+        fields = "__all__"
+
+
+class GoldChartLineSerializer(serializers.ModelSerializer):
+    """黄金图表，折线图"""
+
+    class Meta:
+        model = models.gold_monthly_data
+        fields = "__all__"
+
+
+class GoldChartBarSerializer(serializers.ModelSerializer):
+    """黄金图表，柱状图"""
+
+    class Meta:
+        model = models.gold_earning_rate
         fields = "__all__"

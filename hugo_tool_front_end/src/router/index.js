@@ -51,7 +51,7 @@ export const constantRoutes = [
     children: [{
       path: 'dashboard',
       name: 'Dashboard',
-      component: () => import('@/views/dashboard/index'),
+      component: () => import('@/views/core/gold/chart/GoldChart.vue'),
       meta: {title: '首页', icon: 'dashboard'}
     }]
   },
@@ -189,28 +189,28 @@ export const asyncRoutes = [
         name: 'goldMonthlyList',
         component: () => import('@/views/core/gold/data/GoldMonthlyData'),
         meta: {title: '黄金月报'},
-        hidden:true
+        hidden: true
       },
       {
         path: '/yearly_data',
         name: 'goldYearlyList',
         component: () => import('@/views/core/gold/data/GoldYearlyData'),
         meta: {title: '黄金年报'},
-        hidden:true
+        hidden: true
       },
       {
         path: '/min_max_close',
         name: 'goldMinMaxClose',
         component: () => import('@/views/core/gold/data/GoldMinMaxClose'),
         meta: {title: '黄金收盘价'},
-        hidden:true
+        hidden: true
       },
       {
         path: '/nonfarm_data',
         name: 'nonfarmData',
         component: () => import('@/views/core/nonfarm/non_farm_data'),
         meta: {title: '非农数据'},
-        hidden:false
+        hidden: false
       },
     ]
   },

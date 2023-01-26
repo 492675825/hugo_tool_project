@@ -22,5 +22,8 @@ urlpatterns = [
     path("gold/yearly_data", gold_views.GoldYearlyDataAPIView.as_view(), name="gold/yearly_data"),
     path("gold/close_data", gold_views.GoldCloseDataAPIView.as_view(), name="gold/close_data"),
     path("gold/daily_download/<param_01>", gold_views.GoldDailyDataDownload.as_view(), name="gold/daily_download"),
-    path("gold/gold_daily_data_insert", gold_views.gold_daily_data_insert.as_view(), name="gold/gold_daily_data_insert")
+    path("gold/gold_daily_data_insert", gold_views.gold_daily_data_insert.as_view(), name="gold/gold_daily_data_insert"),
+    path("chart/card", gold_views.GoldChartCardAPIView.as_view(), name="chart/card"),
+    path("chart/line", gold_views.GoldChartLineAPIView.as_view(), name="chart/line"),
+    path("chart/bar", gold_views.GoldChartBarAPIView.as_view(), name="chart/bar")
 ]
