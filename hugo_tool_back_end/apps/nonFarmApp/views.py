@@ -22,8 +22,10 @@ try:
     @register_job(scheduler, "interval", seconds=3600, id="daily_gold_cycle")
     def cycle_job():
         # 非农数据爬虫
+        print("start non_farm cycle job...")
         non_farm_delta = get_page()
         non_farm_delta.get_data(showScreen=False)
+        print("end no_farm cycle job..")
 
 
     scheduler.start()
