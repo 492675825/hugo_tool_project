@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'apps.goldApp',
     'apps.nonFarmApp',
     'apps.newsApp',
+    'django_apscheduler',
     'corsheaders'
 ]
 
