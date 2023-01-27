@@ -17,7 +17,9 @@ import concurrent.futures
 class gold_data:
 
     def __init__(self):
-        self.save_path = "/root/hugo_tool/financial_instruments/download/gold/daily_batch/"
+        # self.save_path = "/root/hugo_tool/financial_instruments/download/gold/daily_batch/"
+        self.root_path = str(Path(__file__).resolve().parent.parent)
+        self.save_path = self.root_path + "/download/gold/daily_batch/"
         print(self.save_path)
         if os.path.exists(self.save_path):
             print("exist")

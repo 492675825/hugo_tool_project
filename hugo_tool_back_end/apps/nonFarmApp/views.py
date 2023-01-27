@@ -9,8 +9,11 @@ from apps.nonFarmApp import serializers as non_farm_serializers
 from rest_framework.generics import ListAPIView
 from rest_framework.pagination import PageNumberPagination
 import pandas as pd
+import time
 
 from util.nonfarm_data_delta import get_page
+from util.data_transform import data_transform
+from util.gold_spider import gold_data
 
 from apscheduler.schedulers.background import BackgroundScheduler
 from django_apscheduler.jobstores import register_job
@@ -19,13 +22,25 @@ try:
     scheduler = BackgroundScheduler()
 
 
-    @register_job(scheduler, "interval", seconds=3600, id="daily_gold_cycle")
+    @register_job(scheduler, "interval", seconds=180, id="daily_gold_cycle")
     def cycle_job():
         # 非农数据爬虫
         print("start non_farm cycle job...")
         non_farm_delta = get_page()
         non_farm_delta.get_data(showScreen=False)
         print("end no_farm cycle job..")
+        # 黄金数据爬虫
+        print(f"Start Date: {time.strftime('%Y-%m-%d %H:%M:%S')}")
+        print(">>> get gold data start..")
+        start_time = time.time()
+        gold = gold_data()
+        gold.get_data_by_page_number(page_number=1)
+        end_time = time.time()
+        print(">>> get gold data cost:", round((end_time - start_time), 2))
+        print(">>> gold data ETL start..")
+        gold_etl = data_transform()
+        gold_etl.main()
+        print(">>> cycle job complete...")
 
 
     scheduler.start()

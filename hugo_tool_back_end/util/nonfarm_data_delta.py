@@ -22,7 +22,9 @@ class get_page:
         if not showScreen:
             options = webdriver.ChromeOptions()
             options.headless = True
-            driver = webdriver.Chrome(options=options, executable_path='chromedriver.exe')
+            driver = webdriver.Chrome(
+                options=options,
+                executable_path='C:/Users/xiong/Desktop/hugo_tool_project/hugo_tool_back_end/util/chromedriver.exe')
         # 弹出浏览器
         elif showScreen:
             driver = webdriver.Chrome()

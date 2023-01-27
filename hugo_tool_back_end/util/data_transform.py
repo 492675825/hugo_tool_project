@@ -1,3 +1,5 @@
+from pathlib import Path
+
 import pandas as pd
 import os
 
@@ -7,7 +9,8 @@ from apps.goldApp import models
 class data_transform:
 
     def __init__(self):
-        self.csv_path = "/root/hugo_tool/financial_instruments/download/gold/daily_batch/"
+        self.root_path = str(Path(__file__).resolve().parent.parent)
+        self.csv_path = self.root_path + "/download/gold/daily_batch/"
 
     def insert_data(self):
         '''
