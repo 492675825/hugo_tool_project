@@ -14,6 +14,7 @@ import time
 from util.nonfarm_data_delta import get_page
 from util.data_transform import data_transform
 from util.gold_spider import gold_data
+from util.news_script import get_news_from_website
 
 from apscheduler.schedulers.background import BackgroundScheduler
 from django_apscheduler.jobstores import register_job
@@ -40,6 +41,9 @@ try:
         print(">>> gold data ETL start..")
         gold_etl = data_transform()
         gold_etl.main()
+        print(">>> get news start..")
+        news_data = get_news_from_website()
+        news_data.main()
         print(">>> cycle job complete...")
 
 
