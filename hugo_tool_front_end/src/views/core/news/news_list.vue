@@ -77,7 +77,7 @@
       <el-table-column type="index" width="50" label="编号" />
       <el-table-column prop="version_date" label="发布日期" />
       <el-table-column prop="title" label="新闻标题" />
-      <el-table-column prop="brief" label="概要" />
+      <el-table-column prop="brief" label="概要" :show-overflow-tooltip="true" />
       <el-table-column prop="keyword" label="关键字" />
       <el-table-column prop="news_type" width="100" label="新闻大类" />
       <el-table-column prop="refresh_date" width="100" label="系统时间" />
